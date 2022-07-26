@@ -9,14 +9,15 @@ namespace ProcessManipulator
         static void Main(string[] args)
         {
             Console.WriteLine("***** Fun with Processes *****\n");
-            ListAllRunningProcesses();
-            Console.Write("-> Enter the process Id: ");
-            int processId = int.Parse(Console.ReadLine());
-            GetSpecificProcess(processId);
-            Console.WriteLine();
-            EnumThreadsForPid(processId);
-            Console.WriteLine();
-            EnumModsForPid(processId);
+            //ListAllRunningProcesses();
+            //Console.Write("-> Enter the process Id: ");
+            //int processId = int.Parse(Console.ReadLine());
+            //GetSpecificProcess(processId);
+            //Console.WriteLine();
+            //EnumThreadsForPid(processId);
+            //Console.WriteLine();
+            //EnumModsForPid(processId);
+            StartAndKillProcess();
         }
         static void ListAllRunningProcesses()
         {
@@ -33,7 +34,6 @@ namespace ProcessManipulator
             Console.WriteLine("\n***************************************\n");
             Console.WriteLine($"-> Total running processes: [{runningProcs.Count()}]");
             Console.WriteLine("\n***************************************\n");
-            StartAndKillProcess();
         }
         // Если процесса с указанным PID не существует,
         // то сгенерируется исключение во время выполнения.
@@ -105,7 +105,7 @@ namespace ProcessManipulator
             // Запустить Firefox и перейти на сайт https://duckduckgo.com.
             try
             {
-                ffProc = Process.Start("Firefox.exe", "https://duckduckgo.com");
+                ffProc = Process.Start(@"C:\Program Files\Mozilla Firefox\firefox.exe", "https://duckduckgo.com");
             }
             catch (InvalidOperationException ex)
             {
