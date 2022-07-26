@@ -8,7 +8,8 @@ namespace ProcessManipulator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("***** Fun with Processes *****\n");
+            ListAllRunningProcesses();
         }
         static void ListAllRunningProcesses()
         {
