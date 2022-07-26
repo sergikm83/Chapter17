@@ -47,5 +47,29 @@ namespace ProcessManipulator
             string procInfo = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
             Console.WriteLine(procInfo);
         }
+        static void EnumThreadsForPid(int pID)
+        {
+            Process theProc = null;
+            try
+            {
+                theProc = Process.GetProcessById(pID);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            // Вывести статистические сведения по каждому потоку в указанном процессе.
+            Console.WriteLine("Here are the threads used by: {0}", theProc.ProcessName);
+            ProcessThreadCollection theThreads = theProc.Threads;
+            foreach(ProcessThread pt in theThreads)
+            {
+                string info = $"-> Thread ID: {pt.Id}\t" +
+                    $"Start Time: {pt.StartTime.ToShortTimeString()}\t" +
+                    $"Priority: {pt.PriorityLevel}";
+                Console.WriteLine(info);
+            }
+            Console.WriteLine("\n***************************************\n");
+        }
     }
 }
