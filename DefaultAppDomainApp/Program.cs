@@ -9,6 +9,8 @@ namespace DefaultAppDomainApp
         {
             Console.WriteLine("***** Fun with the default AppDomain *****\n");
             DisplayDADStats();
+            Console.WriteLine("\n**********************************************\n");
+            ListAllAssembliesInAppDomain();
         }
         private static void DisplayDADStats()
         {
