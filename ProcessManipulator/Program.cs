@@ -13,7 +13,10 @@ namespace ProcessManipulator
             Console.Write("-> Enter the process Id: ");
             int processId = int.Parse(Console.ReadLine());
             GetSpecificProcess(processId);
+            Console.WriteLine();
             EnumThreadsForPid(processId);
+            Console.WriteLine();
+            EnumModsForPid(processId);
         }
         static void ListAllRunningProcesses()
         {
