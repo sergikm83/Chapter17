@@ -10,6 +10,8 @@ namespace ProcessManipulator
         {
             Console.WriteLine("***** Fun with Processes *****\n");
             ListAllRunningProcesses();
+            int processId = int.Parse(Console.ReadLine());
+            GetSpecificProcess(processId);
         }
         static void ListAllRunningProcesses()
         {
@@ -26,6 +28,20 @@ namespace ProcessManipulator
             Console.WriteLine("\n***************************************\n");
             Console.WriteLine($"-> Total running processes: [{runningProcs.Count()}]");
             Console.WriteLine("\n***************************************\n");
+        }
+        // Если процесса с указанным PID не существует,
+        // то сгенерируется исключение во время выполнения.
+        static void GetSpecificProcess(int pid)
+        {
+            Process theProc = null;
+            try
+            {
+                theProc = Process.GetProcessById(pid);
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
