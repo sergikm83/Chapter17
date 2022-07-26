@@ -25,7 +25,7 @@ namespace ProcessManipulator
                                orderby proc.Id
                                select proc;
             // Вывести для каждого процесса идентификатор PID и имя.
-            foreach(var p in runningProcs)
+            foreach (var p in runningProcs)
             {
                 string info = $"-> PID: {p.Id}\tName: {p.ProcessName}";
                 Console.WriteLine(info);
@@ -97,6 +97,30 @@ namespace ProcessManipulator
                 return null;
             }
             return theProc;
+        }
+        static void StartAndKillProcess()
+        {
+            Process ffProc = null;
+            // Запустить Firefox и перейти на сайт https://duckduckgo.com.
+            try
+            {
+                ffProc = Process.Start("Firefox.exe", "https://duckduckgo.com")
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.Write("--> Hit enter to kill {0}...", ffProc.ProcessName);
+            Console.ReadLine();
+            // Уничтожить процесс Firefox.
+            try
+            {
+                ffProc.Kill();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
