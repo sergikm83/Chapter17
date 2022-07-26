@@ -10,6 +10,7 @@ namespace ProcessManipulator
         {
             Console.WriteLine("***** Fun with Processes *****\n");
             ListAllRunningProcesses();
+            Console.Write("-> Enter the process Id: ");
             int processId = int.Parse(Console.ReadLine());
             GetSpecificProcess(processId);
         }
@@ -37,6 +38,8 @@ namespace ProcessManipulator
             try
             {
                 theProc = Process.GetProcessById(pid);
+                string procInfo = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
+                Console.WriteLine(procInfo);
             }
             catch(ArgumentException ex)
             {
