@@ -34,42 +34,34 @@ namespace ProcessManipulator
         // то сгенерируется исключение во время выполнения.
         static void GetSpecificProcess(int pID)
         {
-            Process theProc = null;
-            try
+            Process theProc = GetProcess(pID);
+            if (theProc != null)
             {
-                theProc = Process.GetProcessById(pID);
+                string info = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
+                Console.WriteLine(info);
             }
-            catch(ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return;
-            }
-            string procInfo = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
-            Console.WriteLine(procInfo);
+            else
+                Console.WriteLine($"-> Process by PID: {pID} not found.");
         }
         static void EnumThreadsForPid(int pID)
         {
-            Process theProc = null;
-            try
+            Process theProc = GetProcess(pID);
+            if (theProc != null)
             {
-                theProc = Process.GetProcessById(pID);
+                // Вывести статистические сведения по каждому потоку в указанном процессе.
+                Console.WriteLine("Here are the threads used by: {0}", theProc.ProcessName);
+                ProcessThreadCollection theThreads = theProc.Threads;
+                foreach (ProcessThread pt in theThreads)
+                {
+                    string info = $"-> Thread ID: {pt.Id}\t" +
+                        $"Start Time: {pt.StartTime.ToShortTimeString()}\t" +
+                        $"Priority: {pt.PriorityLevel}";
+                    Console.WriteLine(info);
+                }
+                Console.WriteLine("\n***************************************\n");
             }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return;
-            }
-            // Вывести статистические сведения по каждому потоку в указанном процессе.
-            Console.WriteLine("Here are the threads used by: {0}", theProc.ProcessName);
-            ProcessThreadCollection theThreads = theProc.Threads;
-            foreach(ProcessThread pt in theThreads)
-            {
-                string info = $"-> Thread ID: {pt.Id}\t" +
-                    $"Start Time: {pt.StartTime.ToShortTimeString()}\t" +
-                    $"Priority: {pt.PriorityLevel}";
-                Console.WriteLine(info);
-            }
-            Console.WriteLine("\n***************************************\n");
+            else
+                Console.WriteLine($"-> Process by PID: {pID} not found.");
         }
         static Process GetProcess(int pID)
         {
@@ -80,7 +72,7 @@ namespace ProcessManipulator
             }
             catch (ArgumentException ex)
             {
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
                 return null;
             }
             return theProc;
