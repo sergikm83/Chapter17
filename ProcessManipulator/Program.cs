@@ -22,7 +22,7 @@ namespace ProcessManipulator
                 string info = $"-> PID: {p.Id}\tName: {p.ProcessName}";
                 Console.WriteLine(info);
             }
-            Console.WriteLine("***************************************"\n);
+            Console.WriteLine("***************************************\n");
         }
     }
 }
