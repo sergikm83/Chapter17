@@ -33,6 +33,7 @@ namespace ProcessManipulator
             Console.WriteLine("\n***************************************\n");
             Console.WriteLine($"-> Total running processes: [{runningProcs.Count()}]");
             Console.WriteLine("\n***************************************\n");
+            StartAndKillProcess();
         }
         // Если процесса с указанным PID не существует,
         // то сгенерируется исключение во время выполнения.
@@ -104,7 +105,7 @@ namespace ProcessManipulator
             // Запустить Firefox и перейти на сайт https://duckduckgo.com.
             try
             {
-                ffProc = Process.Start("Firefox.exe", "https://duckduckgo.com")
+                ffProc = Process.Start("Firefox.exe", "https://duckduckgo.com");
             }
             catch (InvalidOperationException ex)
             {
