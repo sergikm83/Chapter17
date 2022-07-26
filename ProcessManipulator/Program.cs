@@ -38,13 +38,14 @@ namespace ProcessManipulator
             try
             {
                 theProc = Process.GetProcessById(pid);
-                string procInfo = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
-                Console.WriteLine(procInfo);
             }
             catch(ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
+                return;
             }
+            string procInfo = $"-> Name: {theProc.ProcessName}\nPriority: {theProc.BasePriority}\nStart time: {theProc.StartTime}";
+            Console.WriteLine(procInfo);
         }
     }
 }
