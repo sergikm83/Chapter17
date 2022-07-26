@@ -23,7 +23,9 @@ namespace ProcessManipulator
                 string info = $"-> PID: {p.Id}\tName: {p.ProcessName}";
                 Console.WriteLine(info);
             }
-            Console.WriteLine("***************************************\n");
+            Console.WriteLine("\n***************************************\n");
+            Console.WriteLine($"\nTotal running processes: {runningProcs.Count()}");
+            Console.WriteLine("\n***************************************\n");
         }
     }
 }
