@@ -64,6 +64,23 @@ namespace ProcessManipulator
             else
                 Console.WriteLine($"-> Process by PID: {pID} not found.");
         }
+        static void EnumModsForPid(int pID)
+        {
+            Process theProc = GetProcess(pID);
+            if (theProc != null)
+            {
+                Console.WriteLine("Here are the loaded modules for: {0}", theProc.ProcessName);
+                ProcessModuleCollection theMods = theProc.Modules;
+                foreach (ProcessModule pm in theMods)
+                {
+                    string info = $"-> Mod Name: {pm.ModuleName}";
+                    Console.WriteLine(info);
+                }
+                Console.WriteLine("\n***************************************\n");
+            }
+            else
+                Console.WriteLine($"-> Process by PID: {pID} not found.");
+        }
         static Process GetProcess(int pID)
         {
             Process theProc = null;
