@@ -71,5 +71,19 @@ namespace ProcessManipulator
             }
             Console.WriteLine("\n***************************************\n");
         }
+        static Process GetProcess(int pID)
+        {
+            Process theProc = null;
+            try
+            {
+                theProc = Process.GetProcessById(pID);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            return theProc;
+        }
     }
 }
