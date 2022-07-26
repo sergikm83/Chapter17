@@ -116,7 +116,7 @@ namespace ProcessManipulator
             // Уничтожить процесс Firefox.
             try
             {
-                ffProc.Kill();
+                ffProc.Kill(true);
             }
             catch (InvalidOperationException ex)
             {
