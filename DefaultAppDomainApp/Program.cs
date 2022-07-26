@@ -6,7 +6,8 @@ namespace DefaultAppDomainApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("***** Fun with the default AppDomain *****\n");
+            DisplayDADStats();
         }
         private static void DisplayDADStats()
         {
