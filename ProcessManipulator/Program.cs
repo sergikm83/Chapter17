@@ -32,12 +32,12 @@ namespace ProcessManipulator
         }
         // Если процесса с указанным PID не существует,
         // то сгенерируется исключение во время выполнения.
-        static void GetSpecificProcess(int pid)
+        static void GetSpecificProcess(int pID)
         {
             Process theProc = null;
             try
             {
-                theProc = Process.GetProcessById(pid);
+                theProc = Process.GetProcessById(pID);
             }
             catch(ArgumentException ex)
             {
