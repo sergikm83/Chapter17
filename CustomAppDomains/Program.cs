@@ -7,14 +7,19 @@ namespace CustomAppDomains
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("***** Fun with Custom AppDomains *****\n");
+            // Вывести все сборки, загруженные в стандартный домен приложения.
+            AppDomain defaultAD = AppDomain.CurrentDomain;
+            ListAllAssembliesInAppDomain(defaultAD);
+            // Создать новый домен приложения.
+            MakeNewAppDomain();
         }
 
-        private static void MakeNewDomain()
+        private static void MakeNewAppDomain()
         {
             // Создать новый домен приложения в текущем процессе
             // и вывести список загруженных сборок.
-            AppDomain newAD = AppDomain.CreateDomain(Guid.NewGuid().ToString());
+            AppDomain newAD = AppDomain.CreateDomain("NewAppDomain");
             ListAllAssembliesInAppDomain(newAD);
         }
 
