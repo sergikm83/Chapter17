@@ -39,5 +39,15 @@ namespace DefaultAppDomainApp
                 Console.WriteLine("-> Version: {0}\n",a.GetName().Version);
             }
         }
+        private static void InitDAD()
+        {
+            // Эта логика будет выводить имя любой сборки, загруженной
+            // в домен приложения после его создания.
+            AppDomain defaultAD = AppDomain.CurrentDomain;
+            defaultAD.AssemblyLoad += (o, s) =>
+              {
+                  Console.WriteLine("{0} has been loaded!", s.LoadedAssembly.GetName().Name);
+              };
+        }
     }
 }
