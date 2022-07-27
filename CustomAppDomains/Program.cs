@@ -10,6 +10,14 @@ namespace CustomAppDomains
             Console.WriteLine("Hello World!");
         }
 
+        private static void MakeNewDomain()
+        {
+            // Создать новый домен приложения в текущем процессе
+            // и вывести список загруженных сборок.
+            AppDomain newAD = AppDomain.CreateDomain(Guid.NewGuid().ToString());
+            ListAllAssembliesInAppDomain(newAD);
+        }
+
         static void ListAllAssembliesInAppDomain(AppDomain ad)
         {
             // Получить все сборки, загруженные в стандартный домен приложения.
