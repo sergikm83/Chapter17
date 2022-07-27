@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Linq;
 
 namespace DefaultAppDomainApp
 {
@@ -25,11 +26,14 @@ namespace DefaultAppDomainApp
         static void ListAllAssembliesInAppDomain()
         {
             // Получить доступ к домену приложения для текущего потока.
-            AppDomain defaultAd = AppDomain.CurrentDomain;
+            AppDomain defaultAD = AppDomain.CurrentDomain;
             // Извлечь все сборки, загруженные в стандартный домен приложения.
-            Assembly[] loadedAssemblies = defaultAd.GetAssemblies();
-            Console.WriteLine("***** Here are the assemblies loaded in {0} *****\n",defaultAd.FriendlyName);
-            foreach(Assembly a in loadedAssemblies)
+            var loadedAssemblies = from a in defaultAD.GetAssemblies()
+                                   orderby a.GetName().Name
+                                   select a;
+            // Assembly[] loadedAssemblies = defaultAd.GetAssemblies();
+            Console.WriteLine("***** Here are the assemblies loaded in {0} *****\n",defaultAD.FriendlyName);
+            foreach(var a in loadedAssemblies)
             {
                 Console.WriteLine("-> Name: {0}", a.GetName().Name);
                 Console.WriteLine("-> Version: {0}\n",a.GetName().Version);
